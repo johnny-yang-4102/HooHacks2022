@@ -1,18 +1,19 @@
 import React from "react"
+import { Button } from "react-bootstrap"
 
-const PersonForm = ({newName, newPhone, handleNameChange, handlePhoneChange, addInfo}) => {
+const PersonForm = ({firstName, lastName, handleFirstNameChange, handleLastNameChange, addInfo}) => {
     
     return (
         <div>
             <form onSubmit={addInfo}>
                 <div>
-                    name: <input value={newName} onChange={handleNameChange}/>
+                    First Name: <input value={firstName} onChange={handleFirstNameChange}/>
                 </div>
                 <div>
-                    number: <input value={newPhone} onChange={handlePhoneChange}/>
+                    Last Name: <input value={lastName} onChange={handleLastNameChange}/>
                 </div>
                 <div>
-                    <button type="submit">add</button>
+                    <Button variant="success" type="submit">save</Button>
                 </div>
             </form>
         </div>
