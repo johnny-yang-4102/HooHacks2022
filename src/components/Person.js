@@ -11,7 +11,7 @@ const Person = ({ person }) => {
     const getCompatibilityScore = (comparePerson) => {
 
         //cVal = compatibility value
-            //Obtain person attributes and comparePerson attributes and compare them
+            //Obtain person attributes and p attributes and compare 
         const cvalWorkoutGoal = 0
         const cvalAvailDaysOfWeek = 0
 
