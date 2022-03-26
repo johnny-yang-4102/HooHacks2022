@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+import Person from "./components/Person";
+function App() {
+
+  const personObj = {
+    firstName: "Allen",
+    lastName: "Doelue",
+    Age: 21,
+    Gender: "Male",
+    profilePic: "",
+    id: 1,
+    workoutGoal: "Muscle Mass",
+    availDaysOfWeek: [1, 0, 1, 0, 1, 0, 0], //Monday - Sunday
+    squat: 225,
+    deadlift: 225,
+    bench: 145,
+    expRating: 5
+
+=======
 import PersonForm from "./components/PersonForm";
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -182,11 +201,16 @@ function App() {
     setFirstLogin(false);
     setClickedPersonProfile(false);
     setClickedMatchesList(false);
+>>>>>>> b92438d6c210d96fdbcec3bccb1c247ed753129b
   }
 
   return (
     <div className="App">
-      <p>hello world</p>
+      <>
+      <Person person={personObj}/>
+      <p></p>
+      </>
+        
     </div>
   );
 }
