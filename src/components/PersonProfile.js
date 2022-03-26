@@ -3,7 +3,7 @@ import {useState, useEffect} from "react"
 import axios from "axios"
 
 
-const ConversationList = ({ country }) => {
+const PersonProfile = ({ country }) => {
 
     return (
         <div>
@@ -13,4 +13,4 @@ const ConversationList = ({ country }) => {
 }
 
 
-export default ConversationList
+export default PersonProfile
