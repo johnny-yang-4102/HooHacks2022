@@ -28,7 +28,7 @@ const FindMatches = ({  }) => {
                   <h4>Timothy Walker (19)</h4>
                 </Col>
                 <Col xs={6} md={6}>
-                  <Image style={{ display: "block", width: 200, padding: 30 }}
+                  <Image style={{ display: "flex", width: 200, padding: 30, justifyContent: "center"}}
                   src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80"
                   roundedCircle
                 />
@@ -39,7 +39,7 @@ const FindMatches = ({  }) => {
                 <ProgressBar now={60} />
               </div>
             </Container>
-            <Container>
+            <Container style={{ margin: 30}}>
                 <Row>
                     <Col xs={6} md={2}>
                     <h5>Primary goal</h5>
@@ -48,6 +48,8 @@ const FindMatches = ({  }) => {
                         Muscle mass
                     </Col>
                 </Row>
+            </Container>
+            <Container style={{ margin: 30}}>
                 <Row>
                     <Col xs={6} md={2}>
                     <h5>Training days</h5>
@@ -55,22 +57,27 @@ const FindMatches = ({  }) => {
                 </Row>
                 <Row>
                     <Col xs={6} md={2}>
+                    
+                    </Col>
+                    <Col xs={6} md={2}>
                     <h6>Timothy</h6>
                     </Col>
-                    <Col xs={3} md={6}>
-                        Mon, Wed, Fri
+                    <Col xs={6} md={2}>
+                    <h6>Me</h6>
                     </Col>
                 </Row>
                 <Row>
                     <Col xs={6} md={2}>
-                    <h6>You</h6>
                     </Col>
-                    <Col xs={3} md={6}>
-                        Mon, Tue, Thu
+                    <Col xs={6} md={2}>
+                        Mon, Wed, Fri
+                    </Col>
+                    <Col xs={6} md={2}>
+                        Mon, Thu, Sun
                     </Col>
                 </Row>
             </Container>
-            <Container>
+            <Container style={{ margin: 30}}>
                 <Row>
                     <Col xs={6} md={2}>
                     <h5>Ability</h5>
@@ -84,7 +91,7 @@ const FindMatches = ({  }) => {
                     <h6>Timothy</h6>
                     </Col>
                     <Col xs={6} md={2}>
-                    <h6>Kurt</h6>
+                    <h6>Me</h6>
                     </Col>
                 </Row>
                 <Row>
@@ -121,7 +128,7 @@ const FindMatches = ({  }) => {
                     </Col>
                 </Row>
             </Container>
-            <Container>
+            <Container style={{ margin: 30}}>
                 <Row>
                   <h4>Experience level</h4>
                   <input type="range" overflow="hidden" value={""} onChange={""} 
@@ -135,9 +142,9 @@ const FindMatches = ({  }) => {
                 </Row>
             </Container>
             <Container>
-              <div>
-                <Button variant="success" type="submit">Like</Button>
-                <Button variant="danger" type="submit">Ignore</Button>
+              <div style={{ display: "flex", justifyContent: "center"}}>
+                <Button variant="success" size="lg" type="submit" style={{ margin: 15}}>Like</Button>
+                <Button variant="danger" size="lg" type="submit" style={{ margin: 15 }}>Ignore</Button>
               </div>
             </Container>
         </div>

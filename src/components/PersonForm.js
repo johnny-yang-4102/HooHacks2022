@@ -22,7 +22,7 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
             </Navbar>
             <div><h2>Set up your profile</h2></div>
             <form onSubmit={saveInfo}>
-                <Container>
+                <Container style={{ display: "flex", justifyContent: "center"}}>
                     <Row>
                         <Col xs={6} md={2}>
                             First name
@@ -70,9 +70,13 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                     </Row>
                 </Container>
                 <h4>Training days</h4>
-                <Container>
+                <div className="text-center" style={{margin: 30}}>
                     <h5>When do you train?</h5>
+                </div>
+                <Container>
                     <Row>
+                        <Col xs={6} md={3}>
+                        </Col>
                         <Col xs={6} md={2}>
                             Monday
                         </Col>
@@ -81,6 +85,8 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                         </Col>
                     </Row>
                     <Row>
+                        <Col xs={6} md={3}>
+                        </Col>
                         <Col xs={6} md={2}>
                             Tuesday
                         </Col>
@@ -89,6 +95,8 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                         </Col>
                     </Row>
                     <Row>
+                        <Col xs={6} md={3}>
+                        </Col>
                         <Col xs={6} md={2}>
                             Wednesday
                         </Col>
@@ -96,7 +104,9 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                             <input id={2} onChange={handleHoursPerDayOfWeekChange} /> hours
                         </Col>
                     </Row>
-                    <Row>
+                    <Row>  
+                        <Col xs={6} md={3}>
+                        </Col>
                         <Col xs={6} md={2}>
                             Thursday
                         </Col>
@@ -105,6 +115,8 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                         </Col>
                     </Row>
                     <Row>
+                        <Col xs={6} md={3}>
+                        </Col>
                         <Col xs={6} md={2}>
                             Friday
                         </Col>
@@ -113,6 +125,8 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                         </Col>
                     </Row>
                     <Row>
+                        <Col xs={6} md={3}>
+                        </Col>
                         <Col xs={6} md={2}>
                             Saturday
                         </Col>
@@ -121,6 +135,8 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                         </Col>
                     </Row>
                     <Row>
+                        <Col xs={6} md={3}>
+                        </Col>
                         <Col xs={6} md={2}>
                             Sunday
                         </Col>
@@ -130,9 +146,13 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                     </Row>
                 </Container>
                 <h4>Ability</h4>
-                <Container>
+                <div className="text-center" style={{margin: 30}}>
                     <h5>How much weight can you achieve for each activity?</h5>
+                </div>
+                <Container className="text-center">
                     <Row>
+                        <Col xs={6} md={3}>
+                        </Col>
                         <Col xs={6} md={2}>
                             Bench press
                         </Col>
@@ -141,6 +161,8 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                         </Col>
                     </Row>
                     <Row>
+                        <Col xs={6} md={3}>
+                        </Col>
                         <Col xs={6} md={2}>
                             Deadlift
                         </Col>
@@ -149,6 +171,8 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                         </Col>
                     </Row>
                     <Row>
+                        <Col xs={6} md={3}>
+                        </Col>
                         <Col xs={6} md={2}>
                             Back squat
                         </Col>
@@ -157,11 +181,16 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                         </Col>
                     </Row>
                 </Container>
-                <div>
-                    <h4>Experience Level</h4>
-                    <input type="range"  value={expYears} onChange={handleExpYearsChange} min={0} max={11} />
+                <h4>Experience Level</h4>
+                <div className="text-center" style={{margin: 30}}>
+                    <h5>How experienced are you with lifting weights?</h5>
                 </div>
-                <Button variant="primary" type="submit">save</Button>
+                <Container className="text-center">
+                    <input type="range"  value={expYears} onChange={handleExpYearsChange} min={0} max={11} />   
+                </Container>
+                <Container className="text-center">
+                    <Button variant="primary" type="submit" style={{margin: 10}}>Save profile</Button>
+                </Container>
             </form>
         </div>
     )

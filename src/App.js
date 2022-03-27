@@ -12,13 +12,7 @@ function App() {
   //TODO - make an array of boolean values rather than multiple booleans here
 
   //Clicking button will change these states
-  const [statesOfApp, setStatesOfApp] = useState([true, false, false, false])
-
-  //Initial states of clicking pages
-  const [firstLogin, setFirstLogin] = useState(false)
-  const [clickedfindMatches, setClickedFindMatches] = useState(true)
-  const [clickedPersonProfile, setClickedPersonProfile] = useState(false)
-  const [clickedMatchesList, setClickedMatchesList] = useState(false)
+  const [statesOfApp, setStatesOfApp] = useState([false, false, true, false])
 
   //Person attributes for form-----------------------
   const [firstName, setFirstName] = useState('')
@@ -69,7 +63,7 @@ function App() {
 
   const handleWorkoutGoalChange = (event) => {
     //event.preventDefault()
-    
+
     setWorkoutGoal(event)
   }
 
@@ -136,7 +130,7 @@ function App() {
   //   [])
 
   //1. Component (PersonForm.js)
-  if (statesOfApp[0] && !statesOfApp[1] && !statesOfApp[2] && !statesOfApp[3] ) {
+  if (statesOfApp[0] && !statesOfApp[1] && !statesOfApp[2] && !statesOfApp[3]) {
 
     //Empty my Profile page
 
@@ -163,39 +157,35 @@ function App() {
   }
 
   //2. Component (FindMatches.js)
-  else if (clickedfindMatches) {
+  else if (!statesOfApp[0] && statesOfApp[1] && !statesOfApp[2] && !statesOfApp[3]) {
 
     return (
       <div>
-        <FindMatches/>
+        <FindMatches />
       </div>
     )
 
   }
 
   //3. Component (MatchList.js)
-  else if (clickedMatchesList) {
+  else if (!statesOfApp[0] && !statesOfApp[1] && statesOfApp[2] && !statesOfApp[3]) {
 
     return (
       <div>
-        <MatchList/>
+        <MatchList />
       </div>
     )
   }
 
   //4. Component (PersonProfile.js)
-  else if (clickedPersonProfile) {
+  else if (!statesOfApp[0] && !statesOfApp[1] && !statesOfApp[2] && statesOfApp[3]) {
 
     return (
       <div>
         <PersonProfile />
       </div>
     )
-<<<<<<< HEAD
 
-=======
->>>>>>> 65c4ddec60b0f792e6f8da393dd075b0cb56c2e0
   }
-
 }
 export default App;
