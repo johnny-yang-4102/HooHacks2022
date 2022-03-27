@@ -9,6 +9,11 @@ import personService from './services/PersonService'
 
 function App() {
 
+  //TODO - make an array of boolean values rather than multiple booleans here
+
+  //Clicking button will change these states
+  const [statesOfApp, setStatesOfApp] = useState([true, false, false, false])
+
   //Initial states of clicking pages
   const [firstLogin, setFirstLogin] = useState(false)
   const [clickedfindMatches, setClickedFindMatches] = useState(true)
@@ -18,10 +23,9 @@ function App() {
   //Person attributes for form-----------------------
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [gender, setGender] = useState('')
   const [age, setAge] = useState('')
-  const [hoursPerDay, setHoursPerDay] = useState([0, 0, 0, 0, 0, 0, 0])
-  const [workoutGoal, setWorkoutGoal] = useState('Healthy')
+  const [hoursPerDayOfWeek, setHoursPerDayOfWeek] = useState([0, 0, 0, 0, 0, 0, 0])
+  const [workoutGoal, setWorkoutGoal] = useState('Select Primary Goal')
   const [valSquat, setValSquat] = useState(0)
   const [valDeadlift, setValDeadlift] = useState(0)
   const [valBench, setValBench] = useState(0)
@@ -49,24 +53,24 @@ function App() {
     setLastName(event.target.value)
   }
 
-  const handleGenderChange = (event) => {
-    event.preventDefault()
-    setGender(event.target.value)
-  }
-
   const handleAgeChange = (event) => {
     event.preventDefault()
     setAge(event.target.value)
   }
 
-  const handleHoursPerDayChange = (event) => {
+  const handleHoursPerDayOfWeekChange = (event) => {
     event.preventDefault()
-    setHoursPerDay(event.target.value)
+    let arr = hoursPerDayOfWeek
+    arr[event.target.id] = parseInt(event.target.value)
+
+    setHoursPerDayOfWeek(arr)
+    console.log(hoursPerDayOfWeek)
   }
 
   const handleWorkoutGoalChange = (event) => {
-    event.preventDefault()
-    setWorkoutGoal(event.target.value)
+    //event.preventDefault()
+    
+    setWorkoutGoal(event)
   }
 
   const handleValSquatChange = (event) => {
@@ -89,6 +93,7 @@ function App() {
     setExpYears(event.target.value)
   }
 
+
   //Form submission
   const saveInfo = (event) => {
     event.preventDefault()
@@ -98,26 +103,20 @@ function App() {
       firstName: firstName,
       lastName: lastName,
       age: age,
-      gender: gender,
-      profilePic: '',
+      profilePic: '../public/profile_pic.jpg',
       workoutGoal: workoutGoal,
-      hoursPerDay: hoursPerDay,
-      squat: valSquat,
-      deadlift: valDeadlift,
-      bench: valBench,
-      expYears: expYears
+      hoursPerDayOfWeek: hoursPerDayOfWeek,
+      valSquat: parseInt(valSquat),
+      valDeadlift: parseInt(valDeadlift),
+      valBench: parseInt(valBench),
+      expYears: parseInt(expYears)
     }
+
+    console.log(personObj)
 
     personService.create(personObj)
       .then(person => {
         setPeople(people.concat(person))
-
-        //reset filters (values inside form) --CHANGE IF WE DECIDE TO USE MULTIPLE USERS
-        setFirstName("")
-        setLastName("")
-        setAge(0)
-        setGender("")
-        setWorkoutGoal("")
       })
 
   }
@@ -137,32 +136,32 @@ function App() {
   //   [])
 
   //1. Component (PersonForm.js)
-  if (firstLogin) {
+  if (statesOfApp[0] && !statesOfApp[1] && !statesOfApp[2] && !statesOfApp[3] ) {
 
-    console.log(people)
     //Empty my Profile page
 
     return (
       <div>
-        <PersonForm firstName={firstName} lastName={lastName} gender={gender} age={age} hoursPerDay={hoursPerDay} workoutGoal={workoutGoal}
+        <PersonForm firstName={firstName} lastName={lastName} age={age} hoursPerDayOfWeek={hoursPerDayOfWeek} workoutGoal={workoutGoal}
           valSquat={valSquat} valDeadlift={valDeadlift} valBench={valBench} expYears={expYears}
 
 
           handleFirstNameChange={handleFirstNameChange}
           handleLastNameChange={handleLastNameChange}
-          handleGenderChange={handleGenderChange}
           handleAgeChange={handleAgeChange}
-          handleHoursPerDayChange={handleHoursPerDayChange}
+          handleHoursPerDayOfWeekChange={handleHoursPerDayOfWeekChange}
           handleWorkoutGoalChange={handleWorkoutGoalChange}
           handleValSquatChange={handleValSquatChange}
           handleValDeadliftChange={handleValDeadliftChange}
           handleValBenchChange={handleValBenchChange}
           handleExpYearsChange={handleExpYearsChange}
 
+          saveInfo={saveInfo}
         />
       </div>
     );
   }
+
   //2. Component (FindMatches.js)
   else if (clickedfindMatches) {
 
@@ -192,7 +191,10 @@ function App() {
         <PersonProfile />
       </div>
     )
+<<<<<<< HEAD
 
+=======
+>>>>>>> 65c4ddec60b0f792e6f8da393dd075b0cb56c2e0
   }
 
 }
