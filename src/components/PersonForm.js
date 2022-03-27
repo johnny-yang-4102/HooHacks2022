@@ -159,7 +159,7 @@ const PersonForm = ({firstName, lastName, handleFirstNameChange, handleLastNameC
                     <h4>Experience level</h4>
                     <input type="range" value={""} onChange={""}/>
                 </div>
-                <Button variant="success" type="submit">save</Button>
+                <Button variant="primary" type="submit">save</Button>
             </form>
         </div>
     )

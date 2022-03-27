@@ -10,8 +10,8 @@ import personService from './services/PersonService'
 function App() {
 
   //Initial states of clicking pages
-  const [firstLogin, setFirstLogin] = useState(true)
-  const [clickedfindMatches, setClickedFindMatches] = useState(false)
+  const [firstLogin, setFirstLogin] = useState(false)
+  const [clickedfindMatches, setClickedFindMatches] = useState(true)
   const [clickedPersonProfile, setClickedPersonProfile] = useState(false)
   const [clickedMatchesList, setClickedMatchesList] = useState(false)
 
@@ -124,17 +124,17 @@ function App() {
 
   //Initial state of app (data fetch) -----------------------------------------------------
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    axios.get('http://localhost:3001/api/people')
-      .then(response => {
+  //   axios.get('http://localhost:3001/api/people')
+  //     .then(response => {
 
-        setPeople(response.data)
+  //       setPeople(response.data)
 
-      })
+  //     })
 
-  },
-    [])
+  // },
+  //   [])
 
   //1. Component (PersonForm.js)
   if (firstLogin) {
@@ -165,9 +165,6 @@ function App() {
   }
   //2. Component (FindMatches.js)
   else if (clickedfindMatches) {
-    setFirstLogin(false);
-    setClickedPersonProfile(false);
-    setClickedMatchesList(false);
 
     return (
       <div>
@@ -179,9 +176,6 @@ function App() {
 
   //3. Component (MatchList.js)
   else if (clickedMatchesList) {
-    setFirstLogin(false);
-    setClickedPersonProfile(false);
-    setClickedFindMatches(false);
 
     return (
       <div>
@@ -193,22 +187,12 @@ function App() {
   //4. Component (PersonProfile.js)
   else if (clickedPersonProfile) {
 
-
-
-    setFirstLogin(false);
-    setClickedMatchesList(false);
-    setClickedFindMatches(false);
-
     return (
       <div>
         <PersonProfile />
       </div>
     )
 
-    return (
-      <div className="App">
-      </div>
-    )
   }
 
 }
