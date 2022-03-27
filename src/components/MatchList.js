@@ -9,6 +9,7 @@ const MatchList = ({ country }) => {
 
     return (
         <div>
+<<<<<<< HEAD
           <Navbar bg="light" expand="lg">
                 <Container style={{ margin: 30}}>
                     <Navbar.Brand href="#home">HoosYourFit</Navbar.Brand>
@@ -22,6 +23,8 @@ const MatchList = ({ country }) => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+=======
+>>>>>>> d13d7cfad24d29529b180a92bbe4bd972ef4a8c2
             <div><h2>My matches</h2></div>
             <Container style={{ margin: 40}}>
                 <Row>

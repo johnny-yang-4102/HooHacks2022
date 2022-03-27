@@ -2,6 +2,7 @@ import PersonForm from "./components/PersonForm";
 import FindMatches from "./components/FindMatches";
 import MatchList from "./components/MatchList";
 import PersonProfile from "./components/PersonProfile";
+import NavBar from "./components/NavBar";
 
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -12,7 +13,12 @@ function App() {
   //TODO - make an array of boolean values rather than multiple booleans here
 
   //Clicking button will change these states
+<<<<<<< HEAD
   const [statesOfApp, setStatesOfApp] = useState([false, false, true, false])
+=======
+  const [statesOfApp, setStatesOfApp] = useState([true, false, false, false])
+  const [firstLogin, setFirstLogin] = useState(true)
+>>>>>>> d13d7cfad24d29529b180a92bbe4bd972ef4a8c2
 
   //Person attributes for form-----------------------
   const [firstName, setFirstName] = useState('')
@@ -25,13 +31,27 @@ function App() {
   const [valBench, setValBench] = useState(0)
   const [expYears, setExpYears] = useState(0)
 
+  const [curPerson, setCurPerson] = useState({})
 
-  const [people, setPeople] = useState('')
+
+  const [people, setPeople] = useState([])
+  const [peopleMatched, setPeopleMatched] = useState([])
+  
 
   //Counter that increments for every unmatch/match
-  const [counter, setCounter] = useState(1)
+  const [counter, setCounter] = useState(0)
 
 
+  //NAVBAR --------------------------------
+  const handleStateOfAppChange = (event) => {
+
+    console.log(event.target.id)
+    event.preventDefault()
+    let arr = [false, false, false, false]
+    arr[event.target.id] = true
+
+    setStatesOfApp(arr)
+  }
 
   //Handling changes of Person attributes through event listeners ------------
   const handleFirstNameChange = (event) => {
@@ -106,28 +126,48 @@ function App() {
       expYears: parseInt(expYears)
     }
 
-    console.log(personObj)
 
     personService.create(personObj)
       .then(person => {
         setPeople(people.concat(person))
       })
 
+    setCurPerson(personObj)
+    setStatesOfApp([false, true, false, false])
+
   }
+
+  //find matches-----------------------------------
+  const handleCounterChange = (event) => {
+    event.preventDefault()
+
+    console.log(event.target.id)
+
+    if(event.target.id)
+    {
+      let newPeopleMatched = peopleMatched.concat(people[counter])
+      
+      setPeopleMatched(newPeopleMatched)
+    }
+
+    let newCounter = counter + 1
+    setCounter(newCounter)
+
+  }
+
 
   //Initial state of app (data fetch) -----------------------------------------------------
 
-  // useEffect(() => {
+  useEffect(() => {
+    console.log("use effect called")
+    axios.get('http://localhost:3001/api/people')
+      .then(response => {
 
-  //   axios.get('http://localhost:3001/api/people')
-  //     .then(response => {
+        setPeople(response.data)
+      })
 
-  //       setPeople(response.data)
-
-  //     })
-
-  // },
-  //   [])
+  },
+    [])
 
   //1. Component (PersonForm.js)
   if (statesOfApp[0] && !statesOfApp[1] && !statesOfApp[2] && !statesOfApp[3]) {
@@ -136,6 +176,7 @@ function App() {
 
     return (
       <div>
+        <NavBar handleStateOfAppChange={handleStateOfAppChange} />
         <PersonForm firstName={firstName} lastName={lastName} age={age} hoursPerDayOfWeek={hoursPerDayOfWeek} workoutGoal={workoutGoal}
           valSquat={valSquat} valDeadlift={valDeadlift} valBench={valBench} expYears={expYears}
 
@@ -157,35 +198,73 @@ function App() {
   }
 
   //2. Component (FindMatches.js)
+<<<<<<< HEAD
   else if (!statesOfApp[0] && statesOfApp[1] && !statesOfApp[2] && !statesOfApp[3]) {
 
     return (
       <div>
         <FindMatches />
+=======
+  else if (!statesOfApp[0] && statesOfApp[1] && !statesOfApp[2] && !statesOfApp[3] ) {
+    return (
+      <div>
+        <NavBar handleStateOfAppChange={handleStateOfAppChange} />
+        <FindMatches counter={counter} curPerson={curPerson} people={people}
+        
+          handleCounterChange={handleCounterChange}
+        />
+>>>>>>> d13d7cfad24d29529b180a92bbe4bd972ef4a8c2
       </div>
     )
 
   }
 
   //3. Component (MatchList.js)
+<<<<<<< HEAD
   else if (!statesOfApp[0] && !statesOfApp[1] && statesOfApp[2] && !statesOfApp[3]) {
 
     return (
       <div>
         <MatchList />
+=======
+  else if (!statesOfApp[0] && !statesOfApp[1] && statesOfApp[2] && !statesOfApp[3] ) {
+
+    return (
+      <div>
+        <NavBar handleStateOfAppChange={handleStateOfAppChange} />
+        <MatchList/>
+>>>>>>> d13d7cfad24d29529b180a92bbe4bd972ef4a8c2
       </div>
     )
   }
 
   //4. Component (PersonProfile.js)
+<<<<<<< HEAD
   else if (!statesOfApp[0] && !statesOfApp[1] && !statesOfApp[2] && statesOfApp[3]) {
+=======
+  else if (!statesOfApp[0] && !statesOfApp[1] && !statesOfApp[2] && statesOfApp[3] ) {
+>>>>>>> d13d7cfad24d29529b180a92bbe4bd972ef4a8c2
 
     return (
       <div>
+        <NavBar handleStateOfAppChange={handleStateOfAppChange} />
         <PersonProfile />
       </div>
     )
+<<<<<<< HEAD
 
+=======
+  }
+
+  else
+  {
+    console.log(statesOfApp)
+    return (
+      <div>
+        <p>shouldn't be here!</p>
+      </div>
+    )
+>>>>>>> d13d7cfad24d29529b180a92bbe4bd972ef4a8c2
   }
 }
 export default App;
