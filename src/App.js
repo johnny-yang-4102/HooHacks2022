@@ -31,6 +31,7 @@ function App() {
 
 
   const [people, setPeople] = useState([])
+  const [peopleMatched, setPeopleMatched] = useState([])
   
 
   //Counter that increments for every unmatch/match
@@ -136,8 +137,18 @@ function App() {
   const handleCounterChange = (event) => {
     event.preventDefault()
 
+    console.log(event.target.id)
+
+    if(event.target.id)
+    {
+      let newPeopleMatched = peopleMatched.concat(people[counter])
+      
+      setPeopleMatched(newPeopleMatched)
+    }
+
     let newCounter = counter + 1
     setCounter(newCounter)
+
   }
 
 

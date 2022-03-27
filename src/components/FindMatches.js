@@ -148,20 +148,20 @@ const FindMatches = ({ counter, curPerson, people, handleCounterChange }) => {
             <Container>
                 <Row>
                     <h4>Experience level</h4>
-                    <input type="range" overflow="hidden" value={""} onChange={""}
+                    <input type="range" overflow="hidden" value={potentialMatch.expYears*10} onChange={""}
 
                         style={{
                             color: "green",
                         }} />
                 </Row>
                 <Row>
-                    <h6>3 years</h6>
+                    <h6>{potentialMatch.expYears} Years</h6>
                 </Row>
             </Container>
             <Container>
                 <div>
-                    <Button variant="success" type="submit" onClick={handleCounterChange}>Like</Button>
-                    <Button variant="danger" type="submit" onClick={handleCounterChange}>Ignore</Button>
+                    <Button variant="success" type="submit" id={1} onClick={handleCounterChange}>Like</Button>
+                    <Button variant="danger" type="submit" id={0} onClick={handleCounterChange}>Ignore</Button>
                 </div>
             </Container>
         </div>
