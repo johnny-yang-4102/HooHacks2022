@@ -1,4 +1,8 @@
 import PersonForm from "./components/PersonForm";
+import FindMatches from "./components/FindMatches";
+import MatchList from "./components/MatchList";
+import PersonProfile from "./components/PersonProfile";
+
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import personService from './services/PersonService'
@@ -7,9 +11,9 @@ function App() {
 
   //Initial states of clicking pages
   const [firstLogin, setFirstLogin] = useState(true)
+  const [clickedfindMatches, setClickedFindMatches] = useState(false)
   const [clickedPersonProfile, setClickedPersonProfile] = useState(false)
   const [clickedMatchesList, setClickedMatchesList] = useState(false)
-  const [clickedfindMatches, setClickedFindMatches] = useState(false)
 
   //Person attributes for form-----------------------
   const [firstName, setFirstName] = useState('')
@@ -90,7 +94,7 @@ function App() {
     event.preventDefault()
 
     const personObj = {
-      id: people.length+1,
+      id: people.length + 1,
       firstName: firstName,
       lastName: lastName,
       age: age,
@@ -105,16 +109,16 @@ function App() {
     }
 
     personService.create(personObj)
-    .then(person => {
-      setPeople(people.concat(person))
+      .then(person => {
+        setPeople(people.concat(person))
 
-      //reset filters (values inside form) --CHANGE IF WE DECIDE TO USE MULTIPLE USERS
-      setFirstName("")
-      setLastName("")
-      setAge(0)
-      setGender("")
-      setWorkoutGoal("")
-    })
+        //reset filters (values inside form) --CHANGE IF WE DECIDE TO USE MULTIPLE USERS
+        setFirstName("")
+        setLastName("")
+        setAge(0)
+        setGender("")
+        setWorkoutGoal("")
+      })
 
   }
 
@@ -132,7 +136,7 @@ function App() {
   },
     [])
 
-  //Component (PersonForm.js)
+  //1. Component (PersonForm.js)
   if (firstLogin) {
 
     console.log(people)
@@ -159,7 +163,34 @@ function App() {
       </div>
     );
   }
-  //Component (Person.js)
+  //2. Component (FindMatches.js)
+  else if (clickedfindMatches) {
+    setFirstLogin(false);
+    setClickedPersonProfile(false);
+    setClickedMatchesList(false);
+
+    return (
+      <div>
+        <FindMatches/>
+      </div>
+    )
+
+  }
+
+  //3. Component (MatchList.js)
+  else if (clickedMatchesList) {
+    setFirstLogin(false);
+    setClickedPersonProfile(false);
+    setClickedFindMatches(false);
+
+    return (
+      <div>
+        <MatchList/>
+      </div>
+    )
+  }
+
+  //4. Component (PersonProfile.js)
   else if (clickedPersonProfile) {
 
 
@@ -168,26 +199,17 @@ function App() {
     setClickedMatchesList(false);
     setClickedFindMatches(false);
 
+    return (
+      <div>
+        <PersonProfile />
+      </div>
+    )
+
+    return (
+      <div className="App">
+      </div>
+    )
   }
 
-  //Component (MatchList.js)
-  else if (clickedMatchesList) {
-    setFirstLogin(false);
-    setClickedPersonProfile(false);
-    setClickedFindMatches(false);
-  }
-
-  //Component (FindMatches.js)
-  else if (clickedfindMatches) {
-    setFirstLogin(false);
-    setClickedPersonProfile(false);
-    setClickedMatchesList(false);
-
-  }
-  return (
-    <div className="App">
-    </div>
-  )
 }
-
 export default App;

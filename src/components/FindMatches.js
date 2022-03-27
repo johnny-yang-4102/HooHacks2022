@@ -1,13 +1,13 @@
 import React from "react"
-import {useState, useEffect} from "react"
-import axios from "axios"
+import { Button, Dropdown, Container, Row, Col, Navbar, Nav, NavDropdown} from "react-bootstrap"
 
 
-const FindMatches = ({ country }) => {
+const FindMatches = ({  }) => {
 
+    //PUT everything between the divs. NOTHING CAN BE OUTSIDE OF IT
     return (
         <div>
-          <p>convo list</p>
+          
         </div>
       );
 }
