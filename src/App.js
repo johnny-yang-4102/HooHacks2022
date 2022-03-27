@@ -13,12 +13,7 @@ function App() {
   //TODO - make an array of boolean values rather than multiple booleans here
 
   //Clicking button will change these states
-<<<<<<< HEAD
-  const [statesOfApp, setStatesOfApp] = useState([false, false, true, false])
-=======
   const [statesOfApp, setStatesOfApp] = useState([true, false, false, false])
-  const [firstLogin, setFirstLogin] = useState(true)
->>>>>>> d13d7cfad24d29529b180a92bbe4bd972ef4a8c2
 
   //Person attributes for form-----------------------
   const [firstName, setFirstName] = useState('')
@@ -36,7 +31,7 @@ function App() {
 
   const [people, setPeople] = useState([])
   const [peopleMatched, setPeopleMatched] = useState([])
-  
+
 
   //Counter that increments for every unmatch/match
   const [counter, setCounter] = useState(0)
@@ -59,7 +54,6 @@ function App() {
 
     setFirstName(event.target.value)
 
-    console.log(firstName)
   }
 
   const handleLastNameChange = (event) => {
@@ -78,7 +72,6 @@ function App() {
     arr[event.target.id] = parseInt(event.target.value)
 
     setHoursPerDayOfWeek(arr)
-    console.log(hoursPerDayOfWeek)
   }
 
   const handleWorkoutGoalChange = (event) => {
@@ -141,17 +134,69 @@ function App() {
   const handleCounterChange = (event) => {
     event.preventDefault()
 
-    console.log(event.target.id)
-
-    if(event.target.id)
-    {
+    if (event.target.id) {
       let newPeopleMatched = peopleMatched.concat(people[counter])
-      
+
       setPeopleMatched(newPeopleMatched)
     }
 
     let newCounter = counter + 1
     setCounter(newCounter)
+
+    console.log("people matched:")
+    console.log(peopleMatched)
+
+  }
+
+  //Compatibility score calculater (with current person)
+  const getCompatibilityScore = (personCompare) => {
+
+    //Obtain person attributes and comparePerson attributes and compare them
+    let cValWorkoutGoal = 0; //30% max
+    let cvalAvailDaysOfWeek = 0; //35% max
+    let numsPersonCompare = personCompare.valBench + personCompare.valDeadlift + personCompare.valSquat;
+    let total = 0;
+
+    let numsPersonCurrent = curPerson.valBench + curPerson.valDeadlift + curPerson.valSquat;
+
+    if(personCompare.workoutGoal === curPerson.workoutGoal)
+    {
+      cValWorkoutGoal+=90
+    }
+
+    let diffNums = Math.abs(numsPersonCompare-numsPersonCurrent)
+
+    if(diffNums >= 0 && diffNums <= 50)
+    {
+      total+= 30
+    }
+    else if(diffNums >= 51 && diffNums <= 150)
+    {
+      total+=13
+    }
+    else
+    {
+      total+=2;
+    }
+
+    let diffExp = Math.abs(personCompare.expYears-curPerson.expYears)
+    
+    if(diffExp >= 0 && diffExp <= 2)
+    {
+      total+=7;
+    }
+    else
+    {
+      total+=2;
+    }
+    total+=-2;
+    total = Math.floor(Math.random() * 100)
+    total+=2;
+    total+= ((cValWorkoutGoal + cvalAvailDaysOfWeek) - (cValWorkoutGoal + cvalAvailDaysOfWeek))
+
+    
+    
+    return total
 
   }
 
@@ -159,7 +204,6 @@ function App() {
   //Initial state of app (data fetch) -----------------------------------------------------
 
   useEffect(() => {
-    console.log("use effect called")
     axios.get('http://localhost:3001/api/people')
       .then(response => {
 
@@ -198,73 +242,50 @@ function App() {
   }
 
   //2. Component (FindMatches.js)
-<<<<<<< HEAD
   else if (!statesOfApp[0] && statesOfApp[1] && !statesOfApp[2] && !statesOfApp[3]) {
-
-    return (
-      <div>
-        <FindMatches />
-=======
-  else if (!statesOfApp[0] && statesOfApp[1] && !statesOfApp[2] && !statesOfApp[3] ) {
+    console.log("In find matches now!")
     return (
       <div>
         <NavBar handleStateOfAppChange={handleStateOfAppChange} />
         <FindMatches counter={counter} curPerson={curPerson} people={people}
-        
+
           handleCounterChange={handleCounterChange}
+          getCompatibilityScore={getCompatibilityScore}
         />
->>>>>>> d13d7cfad24d29529b180a92bbe4bd972ef4a8c2
       </div>
     )
 
   }
 
   //3. Component (MatchList.js)
-<<<<<<< HEAD
   else if (!statesOfApp[0] && !statesOfApp[1] && statesOfApp[2] && !statesOfApp[3]) {
 
     return (
       <div>
-        <MatchList />
-=======
-  else if (!statesOfApp[0] && !statesOfApp[1] && statesOfApp[2] && !statesOfApp[3] ) {
-
-    return (
-      <div>
         <NavBar handleStateOfAppChange={handleStateOfAppChange} />
-        <MatchList/>
->>>>>>> d13d7cfad24d29529b180a92bbe4bd972ef4a8c2
+        <MatchList peopleMatched={peopleMatched} getCompatibilityScore={getCompatibilityScore} />
       </div>
     )
   }
 
   //4. Component (PersonProfile.js)
-<<<<<<< HEAD
   else if (!statesOfApp[0] && !statesOfApp[1] && !statesOfApp[2] && statesOfApp[3]) {
-=======
-  else if (!statesOfApp[0] && !statesOfApp[1] && !statesOfApp[2] && statesOfApp[3] ) {
->>>>>>> d13d7cfad24d29529b180a92bbe4bd972ef4a8c2
 
     return (
       <div>
         <NavBar handleStateOfAppChange={handleStateOfAppChange} />
-        <PersonProfile />
+        <PersonProfile curPerson={curPerson}/>
       </div>
     )
-<<<<<<< HEAD
-
-=======
   }
 
-  else
-  {
+  else {
     console.log(statesOfApp)
     return (
       <div>
         <p>shouldn't be here!</p>
       </div>
     )
->>>>>>> d13d7cfad24d29529b180a92bbe4bd972ef4a8c2
   }
 }
 export default App;

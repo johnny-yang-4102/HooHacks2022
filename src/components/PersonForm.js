@@ -173,7 +173,17 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
                     <h5>How experienced are you with lifting weights?</h5>
                 </div>
                 <Container className="text-center">
-                    <input type="range"  value={expYears} onChange={handleExpYearsChange} min={0} max={11} />   
+                    <Row style={{ display: "flex", justifyContent: "center"}}>
+                        <Col xs={6} md={1}>
+                        <p>1</p>
+                        </Col>
+                        <Col xs={6} md={1}>
+                        <input type="range"  value={expYears} onChange={handleExpYearsChange} min={0} max={11} /> 
+                        </Col>
+                        <Col xs={6} md={1}>
+                        <p>10</p>
+                        </Col>
+                    </Row> 
                 </Container>
                 <Container className="text-center">
                     <Button variant="primary" type="submit" style={{margin: 10}}>Save profile</Button>
