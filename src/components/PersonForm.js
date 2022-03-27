@@ -7,19 +7,6 @@ const PersonForm = ({ firstName, lastName, age, workoutGoal, valSquat, valDeadli
 
     return (
         <div>
-            <Navbar bg="light" expand="lg">
-                <Container>
-                    <Navbar.Brand href="#home">HoosYourFit</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link href="#home">Find buddies</Nav.Link>
-                            <Nav.Link href="#link">Matches</Nav.Link>
-                            <Nav.Link href="#link">My profile</Nav.Link>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
             <div><h2>Set up your profile</h2></div>
             <form onSubmit={saveInfo}>
                 <Container>
