@@ -3,3 +3,5 @@ This is the front-end portion of the hoos-hack app we submitted (2nd place in he
 Backend: https://github.com/johnny-yang-4102/HooHacks2022Backend
 
 Project showcase: https://devpost.com/software/hoosyourfit
+
+Youtube showcase: https://www.youtube.com/watch?v=9s71r6larWo
